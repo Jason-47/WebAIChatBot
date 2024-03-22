@@ -139,7 +139,7 @@ async function getSalesforceAccessToken() {
     headers: {
       "Content-Type": "application/json"
 	},
-    body: payload
+    payload: payload
   };
 
   try {
@@ -148,6 +148,7 @@ async function getSalesforceAccessToken() {
       throw new Error('Failed to obtain access token');
     }
     const responseData = await response.json();
+	  alert(JSON.stringify(responseData));
     return responseData.access_token;
   } catch (error) {
     console.error(error);
