@@ -131,7 +131,7 @@ async function getSalesforceAccessToken() {
   const salesforceSecurityToken = "kQyPUBj7sLLhaqA5wk6wcUD1";
   const clientId = "3MVG9d8..z.hDcPKIsCpCQuxIpvOw8bsUF5.Cni7UIDHtMpANbDw2xyFqSy5uXdNV.GyZYSB_5sBLQ5XlanFY";
   const clientSecret = "1384B8078C3CE804CC7E920F69E94F25A10A21DB66F92F50A16CA642E07F5D53";
-  const url = "https://maneendranath-dev-ed.my.salesforce.com/services/oauth2/authorize";
+  const url = "https://maneendranath-dev-ed.my.salesforce.com/services/oauth2/token";
    const payload = 'grant_type=password&client_id=${clientId}&client_secret=${clientSecret}&username=${encodeURIComponent(salesforceUsername)}&password=${encodeURIComponent(salesforcePassword + salesforceSecurityToken)}';
 
   const options = {
