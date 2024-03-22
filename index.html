@@ -144,6 +144,7 @@ async function getSalesforceAccessToken() {
 
   try {
     const response = await fetch(url, options);
+	  alert(JSON.stringify(response));
     if (!response.ok) {
       throw new Error('Failed to obtain access token');
     }
