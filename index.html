@@ -123,40 +123,7 @@
     
     
     <script>
-	function getSalesforceAccessToken2() {
-	$(document).ready(function(){
-
-     $('⌗connect').click(function(){
-
-     //The clientId and consumerSecret are the ones from the Connected App
-
-     var clientId = "3MVG9d8..z.hDcPKIsCpCQuxIpvOw8bsUF5.Cni7UIDHtMpANbDw2xyFqSy5uXdNV.GyZYSB_5sBLQ5XlanFY";
-
-     var consumerSecret = "1384B8078C3CE804CC7E920F69E94F25A10A21DB66F92F50A16CA642E07F5D53";
-
-     //Authorization endpoint
-
-     var authEndPoint = "https://jason-47.github.io/WebAIChatBot/";
-
-     //response_type must be set to token
-
-     var responseType = "token";
-
-     //This is the callback URL from the connected app
-
-     var redirectURI = "https://maneendranath-dev-ed.my.salesforce.com/services/oauth2/callback";
-
-     //Construct the URL with the required parameters
-
-     var requestURL = authEndPoint+'?client_id='+clientId+'&response_type='+responseType+'&redirect_uri='+redirectURI;
-
-     //redirect the user to the endpoint
-
-     window.location = requestURL;
-
-     });
-	 });
-	 }
+	
 
 async function getSalesforceAccessToken() {
   const salesforceUsername = "maneendra@jasonit.com";
@@ -164,7 +131,7 @@ async function getSalesforceAccessToken() {
   const salesforceSecurityToken = "kQyPUBj7sLLhaqA5wk6wcUD1";
   const clientId = "3MVG9d8..z.hDcPKIsCpCQuxIpjVW7s3n1tOeB8w4D0NkJjb2XPLcvQ8Y6J2ODhuyjOCrFZBVZsZOvPIP55Jj";
   const clientSecret = "0D9A64A1C98D8558301B4469F29F38E32C173D909F8636BD0E0D8193CFEBBEC3";
-  const url = "https://maneendranath-dev-ed.my.salesforce.com/services/oauth2/token";
+  const url = "https://jason-47.github.io/WebAIChatBot/";
    const payload = 'grant_type=password&client_id=${clientId}&client_secret=${clientSecret}&username=${encodeURIComponent(salesforceUsername)}&password=${encodeURIComponent(salesforcePassword + salesforceSecurityToken)}';
 
   const options = {
