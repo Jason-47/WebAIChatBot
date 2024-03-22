@@ -170,7 +170,7 @@ async function getSalesforceAccessToken() {
   const options = {
     method: "POST",
     headers: {
-      "Content-Type": "application/x-www-form-urlencoded"
+      "Content-Type": "application/json"
 	},
     body: payload
   };
@@ -198,7 +198,7 @@ async function getSalesforceAccessToken() {
             displayMessage(userInput, 'user');
             document.getElementById('userInput').value='';
             const response = await sendToSalesforce(userInput);
-            alert('response## '+response);
+            alert('response## '+JSON.stringify(response));
             displayMessage(response, 'bot');
         }
 
