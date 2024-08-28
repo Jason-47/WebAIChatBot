@@ -1,218 +1,69 @@
-<html><head>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <title>Chatbot</title>
-	
-	<style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-        }
-        #chat-container {
-            max-width: 350px;
-            margin: 0 auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-        }
-		#chatbox{
-			padding:12px;
-		Height:120px;
-		overflow-y:auto;
-		
-		
-       }
-	   #chatbox::-webkit-scrollbar {
-          display: none;
-         }
-        .message {
-            margin-bottom: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 16px;
-			position:relative;
-        }
-        .user {
-		    margin-top: 10px;
-            background-color: #169EA6;
-			text-align: end;
-            border-radius: 4px;
-            font-size: 14px;
-            padding: 8px;
-            height: 20px;
-            margin-bottom: 5px;
-			color: #ffffff;
-        }
-        .bot {
-            background-color: #8CDADC;
-			border-radius: 4px;
-            font-size: 14px;
-            padding: 8px;
-            height: 20px;
-            margin-bottom: 5px;
-			
-        }
-        input[type="text"] {
-            width: 80%;
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-        }
-        button {
-            padding: 10px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-		 .typing-indicator {
-            display: inline-block;
-            animation: typing 1s infinite;
-        }
-        @keyframes typing {
-            0%, 100% {
-                opacity: 0.5;
-            }
-            50% {
-                opacity: 1;
-            }
-        }
-		#userInput {
-            margin-top: 10px;
-			
-        }
-		.send-icon {
-            font-size: 24px;
-            cursor: pointer;
-        }
-		
-    .chat-container {
+<html lang="en">
 
-                    max-width: 400px;
-                    margin: 0 auto;
-                    background-color: #fff;
-                    border-radius: 5px;
-                    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-                    overflow: hidden;
-                }
-				
-				.chat-header {
-                    background-color: #008890;
-                    color: #fff;
-                    padding: 10px;
-                    text-align: center;
-					margin:4px;
-                }
-    </style>
-    <!-- Include CSS and other necessary resources here -->
-</head>
-<body>
-    
-	
-    <div class="chat-container">
-        <div class="chat-header">
-            Chatbot
+    <head>
+
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>Live Agent Test</title>
+
+        <!-- Bootstrap -->
+        <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+        <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+        <!--[if lt IE 9]>
+            <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+            <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+    </head>
+
+    <body>
+
+        <div class="container">
+
+            <div class="col-md-6 col-md-offset-3 col-sm-12 col-xs-12 text-center" style="padding-top:30px;">
+
+                <h1>Live Agent Test</h1>
+
+                <hr/>
+
+                <a id="liveagent_button_online_573WJ0000002Gv7" href="javascript://Chat" style="display: none;" class="btn btn-lg btn-success" onclick="liveagent.startChat('573WJ0000002Gv7')">
+                    Start Chat
+                </a>
+
+                <div id="liveagent_button_offline_573WJ0000002Gv7" style="display: none;">
+                    <div class="alert alert-danger">Chat is currently offline. Please ensure there is at least one agent user logged in.</div>
+                </div>
+
+                <script type="text/javascript">
+
+                    var buttonId = '573WJ0000002Gv7';
+
+                    if (!window._laq) { 
+                        window._laq = []; 
+                    }
+                    window._laq.push(function(){
+                        liveagent.showWhenOnline(buttonId, document.getElementById('liveagent_button_online_' + buttonId));
+                        liveagent.showWhenOffline(buttonId, document.getElementById('liveagent_button_offline_' + buttonId));
+                    });
+                </script>
+
+            </div>
+
         </div>
-	 <div id="chatbox"></div>
-	 <div id="userInputContainer">
-    <input type="text" id="userInput" placeholder="Type your message...">
-	<span class="send-icon" onclick="sendMessage()">➤</span>
-    
-    
-    <script>
-	
 
-async function getSalesforceAccessToken() {
-  const salesforceUsername = "maneendra@jasonit.com";
-  const salesforcePassword = "test@1234";
-  const salesforceSecurityToken = "kQyPUBj7sLLhaqA5wk6wcUD1";
-  const clientId = "3MVG9d8..z.hDcPKIsCpCQuxIpvOw8bsUF5.Cni7UIDHtMpANbDw2xyFqSy5uXdNV.GyZYSB_5sBLQ5XlanFY";
-  const clientSecret = "1384B8078C3CE804CC7E920F69E94F25A10A21DB66F92F50A16CA642E07F5D53";
-  const url = "https://maneendranath-dev-ed.my.salesforce.com/services/oauth2/token";
-   const payload = 'grant_type=password&client_id=${clientId}&client_secret=${clientSecret}&username=${encodeURIComponent(salesforceUsername)}&password=${encodeURIComponent(salesforcePassword + salesforceSecurityToken)}';
+        <script type="text/javascript" src="https://c.la2s-core1.sfdc-8tgtt5.salesforceliveagent.com/content/g/js/61.0/deployment.js"></script>
+        <script>
+            var deploymentId = '572WJ0000007CNp';
+            var orgId = '00DDQ0000008icf';
+            liveagent.init('https://c.la2s-core1.sfdc-8tgtt5.salesforceliveagent.com/chat', deploymentId, orgId);
+        </script>
 
-  const options = {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/application/x-www-form-urlencoded"
-	},
-    payload: payload
-  };
-
-  try {
-    const response = await fetch(url, options);
-	  alert(JSON.stringify(response));
-    if (!response.ok) {
-      throw new Error('Failed to obtain access token');
-    }
-    const responseData = await response.json();
-	  alert(JSON.stringify(responseData));
-    return responseData.access_token;
-  } catch (error) {
-    console.error(error);
-    return null;
-  }
-}
-
-
-  
-	
-       async function sendMessage() {
-	      
-            const userInput = document.getElementById('userInput').value;
-			
-            displayMessage(userInput, 'user');
-            document.getElementById('userInput').value='';
-            const response = await sendToSalesforce(userInput);
-            alert('response## '+JSON.stringify(response));
-            displayMessage(response, 'bot');
-        }
-
-        async function sendToSalesforce(message) {
-		const access_token='';
-	// Example usage
-getSalesforceAccessToken()
-.then(accessToken => {
-access_token=accessToken;
-console.log('accessToekn## '+accessToken);
-// Proceed with using the access token
-});
-  
-            const url = 'https://maneendranath-dev-ed.my.salesforce.com/services/apexrest/chatbot-endpoint';
-            const headers = {
-                'Authorization': 'Bearer ' + access_token,
-                'Content-Type': 'application/json'
-            };
-
-            const requestBody = {
-                message: message
-            };
-
-            const response = await fetch(url, {
-                method: 'POST',
-                headers: headers,
-                body: JSON.stringify(requestBody)
-            });
-
-            const responseData = await response.json();
-			alert('responseData## '+responseData);
-            return responseData.response;
-        }
-
-        function displayMessage(message, sender) {
-            const chatbox = document.getElementById('chatbox');
-            const messageElement = document.createElement('div');
-            messageElement.classList.add(sender);
-            messageElement.textContent = message;
-            chatbox.appendChild(messageElement);
-        }
-
-        // Initial welcome message
-        displayMessage("Hello I am bot! ", 'bot');
-    </script>
-
-
-</div></div></body></html>
+        <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <!-- Include all compiled plugins (below), or include individual files as needed -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </body>
+</html>
